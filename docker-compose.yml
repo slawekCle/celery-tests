@@ -11,6 +11,18 @@ services:
     networks:
       - app-net
 
+  worker:
+    build: .
+    container_name: ninja_worker
+    command: uv run celery -A ninja_worker.celery_app worker -l INFO
+    environment:
+      BROKER_URL: amqp://user:pass@rabbitmq:5672//
+      RESULT_BACKEND: rpc://
+    depends_on:
+      - rabbitmq
+    networks:
+      - app-net
+
 
 
 

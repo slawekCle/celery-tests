@@ -22,4 +22,4 @@ RUN uv sync --locked
 COPY ninja_worker/ /app/
 
 # Domyślna komenda – uruchom program
-CMD ["uv", "celkery", "-A", "ninja_worker.celery_app", "worker", "-l", "INFO"]
+CMD ["uv", "run", "celery", "-A", "ninja_worker.celery_app", "worker", "-l", "INFO"]

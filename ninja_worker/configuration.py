@@ -1,5 +1,8 @@
-broker_url = "amqp://user:pass@localhost:5672//"
-result_backend = 'rpc://'
+import os
+
+
+broker_url = os.getenv("BROKER_URL", "amqp://user:pass@rabbitmq:5672//")
+result_backend = os.getenv("RESULT_BACKEND", "rpc://")
 
 task_serializer = 'json'
 result_serializer = 'json'
